@@ -10,8 +10,11 @@
     "cm": "cz"
   },
   "dependencies": {
+    "@lexical/react": "^0.2.5",
+    "lexical": "^0.2.5",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "yjs": "^13.5.35"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.1",
@@ -22,7 +25,7 @@
     "@shlroland/git-hooks": "1.0.1",
     "@shlroland/lint-staged": "^1.0.1",
     "@shlroland/prettier-config": "0.1.1",
-    "@shlroland/stylelint-config": "^1.0.0",
+    "@shlroland/stylelint-config": "^1.0.1",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
     "@vitejs/plugin-react": "^1.3.2",

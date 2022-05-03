@@ -1,43 +1,62 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { $getRoot, $getSelection } from 'lexical'
+import { useEffect } from 'react'
+
+import LexicalComposer from '@lexical/react/LexicalComposer'
+import LexicalPlainTextPlugin from '@lexical/react/LexicalRichTextPlugin'
+import LexicalContentEditable from '@lexical/react/LexicalContentEditable'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import LexicalOnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+
+// When the editor changes, you can get notified via the
+// LexicalOnChangePlugin!
+function onChange(editorState: any) {
+  editorState.read(() => {
+    // Read the contents of the EditorState here.
+    const root = $getRoot()
+    const selection = $getSelection()
+
+    // eslint-disable-next-line no-console
+    console.log(root, selection)
+  })
+}
+
+// Lexical React plugins are React components, which makes them
+// highly composable. Furthermore, you can lazy load plugins if
+// desired, so you don't pay the cost for plugins until you
+// actually use them.
+function MyCustomAutoFocusPlugin() {
+  const [editor] = useLexicalComposerContext()
+
+  useEffect(() => {
+    // Focus the editor when the effect fires!
+    editor.focus()
+  }, [editor])
+
+  return null
+}
+
+// Catch any errors that occur during Lexical updates and log them
+// or throw them as needed. If you don't throw them, Lexical will
+// try to recover gracefully without losing user data.
+function onError(error: any) {
+  console.error(error)
+}
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const initialConfig = {
+    onError,
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <LexicalComposer initialConfig={initialConfig}>
+      <LexicalPlainTextPlugin
+        contentEditable={<LexicalContentEditable />}
+        placeholder={<div>Enter some text...</div>}
+      />
+      <LexicalOnChangePlugin onChange={onChange} />
+      <HistoryPlugin />
+      <MyCustomAutoFocusPlugin />
+    </LexicalComposer>
   )
 }
