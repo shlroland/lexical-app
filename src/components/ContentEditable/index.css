@@ -1,0 +1,14 @@
+.ContentEditable__root {
+  position: relative;
+  display: block;
+  min-height: 150px;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  overflow: auto;
+  font-size: 15px;
+  tab-size: 1;
+  resize: vertical;
+  cursor: text;
+  caret-color: rgb(5 5 5);
+}

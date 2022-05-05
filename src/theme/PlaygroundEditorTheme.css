@@ -1,0 +1,273 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *
+ */
+
+.PlaygroundEditorTheme__ltr {
+  text-align: left;
+}
+
+.PlaygroundEditorTheme__rtl {
+  text-align: right;
+}
+
+.PlaygroundEditorTheme__paragraph {
+  position: relative;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.PlaygroundEditorTheme__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.PlaygroundEditorTheme__quote {
+  padding-left: 16px;
+  border-left: 4px solid rgb(206 208 212);
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  color: rgb(101 103 107);
+  font-size: 15px;
+}
+
+.PlaygroundEditorTheme__h1 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 12px;
+  color: rgb(5 5 5);
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.PlaygroundEditorTheme__h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  color: rgb(101 103 107);
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.PlaygroundEditorTheme__h3 {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.PlaygroundEditorTheme__textBold {
+  font-weight: bold;
+}
+
+.PlaygroundEditorTheme__textItalic {
+  font-style: italic;
+}
+
+.PlaygroundEditorTheme__textUnderline {
+  text-decoration: underline;
+}
+
+.PlaygroundEditorTheme__textStrikethrough {
+  text-decoration: line-through;
+}
+
+.PlaygroundEditorTheme__textUnderlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
+.PlaygroundEditorTheme__textSubscript {
+  vertical-align: sub !important;
+  font-size: .8em;
+}
+
+.PlaygroundEditorTheme__textSuperscript {
+  vertical-align: super;
+  font-size: .8em;
+}
+
+.PlaygroundEditorTheme__textCode {
+  padding: 1px .25rem;
+  background-color: rgb(240 242 245);
+  font-size: 94%;
+  font-family: Menlo, Consolas, Monaco, monospace;
+}
+
+.PlaygroundEditorTheme__hashtag {
+  border-bottom: 1px solid rgb(88 144 255 / 30%);
+  background-color: rgb(88 144 255 / 15%);
+}
+
+.PlaygroundEditorTheme__link {
+  color: rgb(33 111 219);
+  text-decoration: none;
+}
+
+.PlaygroundEditorTheme__link:hover {
+  text-decoration: underline;
+}
+
+.PlaygroundEditorTheme__code {
+  position: relative;
+  display: block;
+  padding: 8px 8px 8px 52px;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: rgb(240 242 245);
+
+  /* white-space: pre; */
+  overflow-x: auto;
+  font-size: 13px;
+  font-family: Menlo, Consolas, Monaco, monospace;
+  line-height: 1.53;
+  tab-size: 2;
+}
+
+.PlaygroundEditorTheme__code::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 25px;
+  padding: 8px;
+  color: #777777;
+  background-color: #eeeeee;
+  white-space: pre-wrap;
+  text-align: right;
+  content: attr(data-gutter);
+  border-right: 1px solid #cccccc;
+}
+
+.PlaygroundEditorTheme__code::after {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  padding: 3px;
+  color: rgb(0 0 0 / 50%);
+  font-size: 10px;
+  text-transform: uppercase;
+  content: attr(data-highlight-language);
+}
+
+.PlaygroundEditorTheme__table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
+.PlaygroundEditorTheme__tableCell {
+  min-width: 75px;
+  padding: 6px 8px;
+  border: 1px solid black;
+  vertical-align: top;
+  text-align: start;
+}
+
+.PlaygroundEditorTheme__tableCellHeader {
+  background-color: #f2f3f5;
+  text-align: start;
+}
+
+.PlaygroundEditorTheme__characterLimit {
+  display: inline;
+  background-color: #ffbbbb !important;
+}
+
+.PlaygroundEditorTheme__ol1 {
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__ol2 {
+  list-style-type: upper-alpha;
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__ol3 {
+  list-style-type: lower-alpha;
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__ol4 {
+  list-style-type: upper-roman;
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__ol5 {
+  list-style-type: lower-roman;
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__ul {
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.PlaygroundEditorTheme__listItem {
+  margin: 8px 32px;
+}
+
+.PlaygroundEditorTheme__nestedListItem {
+  list-style-type: none;
+}
+
+.PlaygroundEditorTheme__tokenComment {
+  color: slategray;
+}
+
+.PlaygroundEditorTheme__tokenPunctuation {
+  color: #999999;
+}
+
+.PlaygroundEditorTheme__tokenProperty {
+  color: #990055;
+}
+
+.PlaygroundEditorTheme__tokenSelector {
+  color: #669900;
+}
+
+.PlaygroundEditorTheme__tokenOperator {
+  color: #9a6e3a;
+}
+
+.PlaygroundEditorTheme__tokenAttr {
+  color: #0077aa;
+}
+
+.PlaygroundEditorTheme__tokenVariable {
+  color: #ee9900;
+}
+
+.PlaygroundEditorTheme__tokenFunction {
+  color: #dd4a68;
+}
+
+.PlaygroundEditorTheme__mark {
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgb(255 212 0);
+  background: rgb(255 212 0 / 14%);
+}
+
+.PlaygroundEditorTheme__mark.selected {
+  background: rgb(255 212 0 / 50%);
+}

@@ -1,40 +1,43 @@
-import { $getRoot, $getSelection } from 'lexical'
-import { useEffect } from 'react'
+// import { $getRoot, $getSelection } from 'lexical'
+// import { useEffect } from 'react'
 
+import type { Props } from '@lexical/react/LexicalComposer'
 import LexicalComposer from '@lexical/react/LexicalComposer'
-import LexicalPlainTextPlugin from '@lexical/react/LexicalRichTextPlugin'
-import LexicalContentEditable from '@lexical/react/LexicalContentEditable'
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import LexicalOnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { PlaygroundEditorTheme } from './theme/PlaygroundEditorTheme'
+// import LexicalPlainTextPlugin from '@lexical/react/LexicalRichTextPlugin'
+// import LexicalContentEditable from '@lexical/react/LexicalContentEditable'
+// import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+// import LexicalOnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
+// import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { Editor } from './Editor'
 
 // When the editor changes, you can get notified via the
 // LexicalOnChangePlugin!
-function onChange(editorState: any) {
-  editorState.read(() => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot()
-    const selection = $getSelection()
+// function onChange(editorState: any) {
+//   editorState.read(() => {
+//     // Read the contents of the EditorState here.
+//     const root = $getRoot()
+//     const selection = $getSelection()
 
-    // eslint-disable-next-line no-console
-    console.log(root, selection)
-  })
-}
+//     // eslint-disable-next-line no-console
+//     console.log(root, selection)
+//   })
+// }
 
 // Lexical React plugins are React components, which makes them
 // highly composable. Furthermore, you can lazy load plugins if
 // desired, so you don't pay the cost for plugins until you
 // actually use them.
-function MyCustomAutoFocusPlugin() {
-  const [editor] = useLexicalComposerContext()
+// function MyCustomAutoFocusPlugin() {
+//   const [editor] = useLexicalComposerContext()
 
-  useEffect(() => {
-    // Focus the editor when the effect fires!
-    editor.focus()
-  }, [editor])
+//   useEffect(() => {
+//     // Focus the editor when the effect fires!
+//     editor.focus()
+//   }, [editor])
 
-  return null
-}
+//   return null
+// }
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -44,19 +47,24 @@ function onError(error: any) {
 }
 
 export function App() {
-  const initialConfig = {
+  const initialConfig: Props['initialConfig'] = {
     onError,
+    namespace: 'lexical-app',
+    theme: PlaygroundEditorTheme,
   }
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <LexicalPlainTextPlugin
+      <div className="editor-shell">
+        <Editor />
+      </div>
+      {/* <LexicalPlainTextPlugin
         contentEditable={<LexicalContentEditable />}
         placeholder={<div>Enter some text...</div>}
       />
       <LexicalOnChangePlugin onChange={onChange} />
       <HistoryPlugin />
-      <MyCustomAutoFocusPlugin />
+      <MyCustomAutoFocusPlugin /> */}
     </LexicalComposer>
   )
 }

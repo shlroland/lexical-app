@@ -1,0 +1,13 @@
+.Placeholder__root {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-block;
+  color: #999999;
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
