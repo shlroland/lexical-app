@@ -4,6 +4,7 @@ import RichTextPlugin from '@lexical/react/LexicalRichTextPlugin'
 import { ContentEditable } from './components/ContentEditable'
 import { Placeholder } from './components/Placeholder'
 import { Toolbar } from './components/Toolbar'
+import { prepopulatedRichText } from './example'
 
 export const Editor: FC = () => {
   const placeholder = <Placeholder>Enter some rich text...</Placeholder>
@@ -17,6 +18,7 @@ export const Editor: FC = () => {
         <RichTextPlugin
           contentEditable={<ContentEditable />}
           placeholder={placeholder}
+          initialEditorState={prepopulatedRichText}
         />
       </div>
     </>

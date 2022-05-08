@@ -10,6 +10,7 @@ import { PlaygroundEditorTheme } from './theme/PlaygroundEditorTheme'
 // import LexicalOnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
 // import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { Editor } from './Editor'
+import { Nodes } from './nodes'
 
 // When the editor changes, you can get notified via the
 // LexicalOnChangePlugin!
@@ -51,6 +52,7 @@ export function App() {
     onError,
     namespace: 'lexical-app',
     theme: PlaygroundEditorTheme,
+    nodes: [...Nodes],
   }
 
   return (
