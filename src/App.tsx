@@ -11,6 +11,7 @@ import { PlaygroundEditorTheme } from './theme/PlaygroundEditorTheme'
 // import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { Editor } from './Editor'
 import { Nodes } from './nodes'
+import { SharedHistoryContextProvider } from './context/SharedHistoryContext'
 
 // When the editor changes, you can get notified via the
 // LexicalOnChangePlugin!
@@ -57,16 +58,18 @@ export function App() {
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <div className="editor-shell">
-        <Editor />
-      </div>
-      {/* <LexicalPlainTextPlugin
+      <SharedHistoryContextProvider>
+        <div className="editor-shell">
+          <Editor />
+        </div>
+        {/* <LexicalPlainTextPlugin
         contentEditable={<LexicalContentEditable />}
         placeholder={<div>Enter some text...</div>}
       />
       <LexicalOnChangePlugin onChange={onChange} />
       <HistoryPlugin />
       <MyCustomAutoFocusPlugin /> */}
+      </SharedHistoryContextProvider>
     </LexicalComposer>
   )
 }

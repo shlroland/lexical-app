@@ -1,6 +1,15 @@
 import type { FC } from 'react'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import {
+  CAN_REDO_COMMAND,
+  CAN_UNDO_COMMAND,
+  COMMAND_PRIORITY_CRITICAL,
+  REDO_COMMAND,
+  SELECTION_CHANGE_COMMAND,
+  UNDO_COMMAND,
+} from 'lexical'
+import { mergeRegister } from '@lexical/utils'
 import { Divider } from '../Divider'
 import { Select } from '../Select'
 import { DropDown } from '../DropDown/index'
@@ -37,7 +46,7 @@ const CODE_LANGUAGE_OPTIONS: [string, string][] = [
 
 export const Toolbar: FC = () => {
   const [editor] = useLexicalComposerContext()
-  const [activeEditor] = useState(editor)
+  const [activeEditor, setActiveEditor] = useState(editor)
 
   const [blockType] = useState('paragraph')
   const [codeLanguage] = useState<string>('')
@@ -51,7 +60,42 @@ export const Toolbar: FC = () => {
   const [isLink] = useState(false)
   const [isRTL] = useState(false)
 
+  const [canUndo, setCanUndo] = useState(false)
+  const [canRedo, setCanRedo] = useState(false)
+
   const onCodeLanguageSelect = useCallback(() => {}, [])
+
+  useEffect(() => {
+    return editor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      (_payload, newEditor) => {
+        setActiveEditor(newEditor)
+        return false
+      },
+      COMMAND_PRIORITY_CRITICAL,
+    )
+  }, [editor])
+
+  useEffect(() => {
+    return mergeRegister(
+      activeEditor.registerCommand<boolean>(
+        CAN_UNDO_COMMAND,
+        (payload) => {
+          setCanUndo(payload)
+          return false
+        },
+        COMMAND_PRIORITY_CRITICAL,
+      ),
+      activeEditor.registerCommand<boolean>(
+        CAN_REDO_COMMAND,
+        (payload) => {
+          setCanRedo(payload)
+          return false
+        },
+        COMMAND_PRIORITY_CRITICAL,
+      ),
+    )
+  }, [activeEditor])
 
   return (
     <div className="toolbar">
@@ -59,6 +103,8 @@ export const Toolbar: FC = () => {
         title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
         className="toolbar-item spaced"
         aria-label="Undo"
+        disabled={!canUndo}
+        onClick={() => activeEditor.dispatchCommand(UNDO_COMMAND, true)}
       >
         <i className="format undo" />
       </button>
@@ -66,6 +112,8 @@ export const Toolbar: FC = () => {
         title={IS_APPLE ? 'Redo (⌘Y)' : 'Undo (Ctrl+Y)'}
         className="toolbar-item"
         aria-label="Redo"
+        disabled={!canRedo}
+        onClick={() => activeEditor.dispatchCommand(REDO_COMMAND, true)}
       >
         <i className="format redo" />
       </button>
